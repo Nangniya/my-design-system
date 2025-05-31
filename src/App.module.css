@@ -1,0 +1,27 @@
+.container {
+  padding: 32px;
+}
+
+.buttonTable {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.buttonTable th,
+.buttonTable td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #e5e7eb;
+}
+
+.buttonTable th {
+  background: #f3f4f6;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.sizeLabel {
+  font-size: 16px;
+  font-weight: 500;
+  background: #f9fafb;
+}
