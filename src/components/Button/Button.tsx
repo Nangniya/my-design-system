@@ -3,7 +3,7 @@ import React from 'react';
 type Variant = 'danger' | 'warning' | 'success' | 'info';
 type Size = 'lg' | 'md' | 'sm';
 
-type Props<T extends React.ElementType> = {
+type Props<T extends React.ElementType = 'button'> = {
   as?: T;
   variant?: Variant;
   size?: Size;
