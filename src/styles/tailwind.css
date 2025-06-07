@@ -1,0 +1,60 @@
+@import 'tailwindcss';
+
+/* 색상 팔레트 */
+@theme {
+  --color-danger-0: #fff1f0;
+  --color-danger-5: #ffe0de;
+  --color-danger-10: #ffcfcb;
+  --color-danger-20: #ffafa7;
+  --color-danger-30: #ff8f82;
+  --color-danger-40: #ff6f5e;
+  --color-danger-50: #ef4444;
+  --color-danger-60: #d12f2f;
+  --color-danger-70: #a61b1b;
+  --color-danger-80: #7c1010;
+  --color-danger-90: #530606;
+  --color-danger-95: #2b0202;
+  --color-danger-100: #000000;
+
+  --color-warning-0: #fffbea;
+  --color-warning-5: #fff3c4;
+  --color-warning-10: #fce588;
+  --color-warning-20: #fadb5f;
+  --color-warning-30: #f7c948;
+  --color-warning-40: #f0b429;
+  --color-warning-50: #d97706;
+  --color-warning-60: #b87700;
+  --color-warning-70: #7c5e00;
+  --color-warning-80: #513c06;
+  --color-warning-90: #3d2a00;
+  --color-warning-95: #1f1500;
+  --color-warning-100: #000000;
+
+  --color-success-0: #f3faf7;
+  --color-success-5: #def7ec;
+  --color-success-10: #bcf0da;
+  --color-success-20: #84e1bc;
+  --color-success-30: #31c48d;
+  --color-success-40: #0e9f6e;
+  --color-success-50: #10b981;
+  --color-success-60: #057a55;
+  --color-success-70: #046c4e;
+  --color-success-80: #03543f;
+  --color-success-90: #014737;
+  --color-success-95: #002d1a;
+  --color-success-100: #000000;
+
+  --color-info-0: #f0f7ff;
+  --color-info-5: #deedfe;
+  --color-info-10: #c7e0fc;
+  --color-info-20: #a5d8fa;
+  --color-info-30: #76c7f4;
+  --color-info-40: #3ba9fc;
+  --color-info-50: #2563eb;
+  --color-info-60: #1d4ed8;
+  --color-info-70: #1e40af;
+  --color-info-80: #1e3a8a;
+  --color-info-90: #172554;
+  --color-info-95: #0f172a;
+  --color-info-100: #000000;
+}
