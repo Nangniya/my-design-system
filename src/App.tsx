@@ -1,42 +1,58 @@
-import { useRef, useState } from 'react';
 import Button from './components/Button';
-import TextField from './components/TextField';
+import React, { type ForwardedRef, type RefObject, forwardRef } from 'react';
+import { type OutletCompProps, withOutlet } from './hoc/withOutlet';
+import { makePlugOf } from './hoc/makePlugOf';
+import { joinClassNames } from './utils/joinClassNames';
+
+const profileCardContainer = 'p-6 rounded-xl bg-white shadow flex flex-col items-center gap-4';
+const profileCardName = 'text-lg font-bold text-gray-90';
+const profileCardAge = 'text-gray-60 text-center';
+const profileCardActions = 'flex gap-2 mt-2';
+
+const outletNames = ['name', 'age', 'actions'] as const;
+
+const ProfileCardOutletRoot = forwardRef(
+  (props: OutletCompProps<typeof outletNames>, forwardedRef: ForwardedRef<HTMLElement>) => {
+    const { outlets, className } = props;
+    const cardRef = forwardedRef as RefObject<HTMLDivElement>;
+    return (
+      <section className={joinClassNames(className, profileCardContainer)} ref={cardRef}>
+        {outlets.name}
+        {outlets.age}
+        <div className={profileCardActions}>{outlets.actions}</div>
+      </section>
+    );
+  }
+);
+ProfileCardOutletRoot.displayName = 'ProfileCard.Outlet';
+
+const ProfileCardOutlet = withOutlet(outletNames, ProfileCardOutletRoot);
+
+export const ProfileCard = Object.assign(ProfileCardOutlet, {
+  Name: makePlugOf('name', profileCardName),
+  Age: makePlugOf('age', profileCardAge),
+  Actions: makePlugOf('actions', profileCardActions),
+});
 
 const App = () => {
-  const [value, setValue] = useState('');
-  const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
-  const ref = useRef<HTMLInputElement>(null);
-  const handleCheckTextarea = () => {
-    const textareaValue = ref.current?.value ?? '';
-    if (textareaValue.length > 0 && textareaValue.length < 10)
-      setErrorMessage('신청 사유는 10자 이상이어야 합니다.');
-  };
   return (
     <main className="p-8">
-      <form className="flex flex-col gap-4 w-2xl" onSubmit={e => e.preventDefault()}>
-        <TextField
-          label="이름"
-          placeholder={'이름을 입력해 주세요.'}
-          required
-          value={value}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)}
-          error={value.length > 0 && value.length < 2 ? '이름은 2자 이상이어야 합니다.' : undefined}
-        />
-        <TextField
-          ref={ref}
-          as="textarea"
-          label="기타 정보"
-          helperText={'신청 사유를 간단히 작성해 주세요.'}
-          placeholder={'신청 사유를 입력해 주세요.'}
-          error={errorMessage}
-        />
-        <div className="flex justify-end gap-2">
-          <Button onClick={handleCheckTextarea}>입력값 보기</Button>
-          <Button asChild variant="success">
-            <a href="https://www.naver.com">링크</a>
-          </Button>
-        </div>
-      </form>
+      <ProfileCard>
+        <ProfileCard.Name>
+          <p>김나연</p>
+        </ProfileCard.Name>
+        <ProfileCard.Age>
+          <p>26세</p>
+        </ProfileCard.Age>
+        <ProfileCard.Actions>
+          <React.Fragment key="actions">
+            <Button variant="info">팔로우</Button>
+            <Button variant="success" asChild>
+              <a href="https://www.naver.com">네이버 링크</a>
+            </Button>
+          </React.Fragment>
+        </ProfileCard.Actions>
+      </ProfileCard>
     </main>
   );
 };
