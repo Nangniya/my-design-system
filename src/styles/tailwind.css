@@ -2,6 +2,7 @@
 
 /* 색상 팔레트 */
 @theme {
+  /* 위험(Danger) 색상 계열 */
   --color-danger-0: #fff1f0;
   --color-danger-5: #ffe0de;
   --color-danger-10: #ffcfcb;
@@ -57,4 +58,18 @@
   --color-info-90: #172554;
   --color-info-95: #0f172a;
   --color-info-100: #000000;
+
+  --color-gray-0: #f8f9fa;
+  --color-gray-5: #f3f4f6;
+  --color-gray-10: #e5e7eb;
+  --color-gray-20: #d1d5db;
+  --color-gray-30: #9ca3af;
+  --color-gray-40: #6b7280;
+  --color-gray-50: #4b5563;
+  --color-gray-60: #374151;
+  --color-gray-70: #27272a;
+  --color-gray-80: #18181b;
+  --color-gray-90: #101014;
+  --color-gray-95: #09090b;
+  --color-gray-100: #000000;
 }
