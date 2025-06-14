@@ -32,8 +32,8 @@ const App = () => {
         />
         <div className="flex justify-end gap-2">
           <Button onClick={handleCheckTextarea}>입력값 보기</Button>
-          <Button as="a" href="https://www.naver.com" variant="success">
-            링크
+          <Button asChild variant="success">
+            <a href="https://www.naver.com">링크</a>
           </Button>
         </div>
       </form>

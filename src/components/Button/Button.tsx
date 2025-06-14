@@ -1,4 +1,6 @@
 import React from 'react';
+import { Slot } from '../../primitives/Slot';
+import { Slottable } from '../../primitives/Slottable';
 
 type Variant = 'danger' | 'warning' | 'success' | 'info';
 type Size = 'lg' | 'md' | 'sm';
@@ -39,11 +41,15 @@ const baseStyle =
  * <Button variant="info" size="lg">Danger Large</Button>
  */
 
-const Button: Component = ({ as, variant = 'info', size = 'md', ...props }) => {
-  const Element = as || 'button';
+const Button: Component = ({ asChild, variant = 'info', size = 'md', children, ...props }) => {
+  const Element = asChild ? Slot : 'button';
   const v: Variant = variant;
   const s: Size = size;
-  return <Element className={`${baseStyle} ${VARIANTS[v]} ${SIZES[s]}`} {...props} />;
+  return (
+    <Element className={`${baseStyle} ${VARIANTS[v]} ${SIZES[s]}`} {...props}>
+      <Slottable>{children}</Slottable>
+    </Element>
+  );
 };
 
 export default Button;
