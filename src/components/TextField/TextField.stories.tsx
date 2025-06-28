@@ -3,7 +3,7 @@ import TextField from './TextField';
 import { useRef, useState } from 'react';
 
 const meta: Meta<typeof TextField> = {
-  title: 'Components/TextField',
+  title: 'DesignSystem/TextField',
   component: TextField,
   tags: ['autodocs'],
   parameters: {

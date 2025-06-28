@@ -2,7 +2,48 @@
 
 /* 색상 팔레트 */
 @theme {
-  /* 위험(Danger) 색상 계열 */
+  --color-primary-0: #f5faff;
+  --color-primary-5: #e3f0ff;
+  --color-primary-10: #c7e0ff;
+  --color-primary-20: #a5cbff;
+  --color-primary-30: #7db0fa;
+  --color-primary-40: #5393f5;
+  --color-primary-50: #2563eb;
+  --color-primary-60: #1d4ed8;
+  --color-primary-70: #1e40af;
+  --color-primary-80: #1e3a8a;
+  --color-primary-90: #172554;
+  --color-primary-95: #0f172a;
+  --color-primary-100: #000000;
+
+  --color-secondary-0: #f8fafc;
+  --color-secondary-5: #f1f5f9;
+  --color-secondary-10: #e2e8f0;
+  --color-secondary-20: #cbd5e1;
+  --color-secondary-30: #94a3b8;
+  --color-secondary-40: #64748b;
+  --color-secondary-50: #475569;
+  --color-secondary-60: #334155;
+  --color-secondary-70: #1e293b;
+  --color-secondary-80: #0f172a;
+  --color-secondary-90: #0a0e1a;
+  --color-secondary-95: #05070d;
+  --color-secondary-100: #000000;
+
+  --color-gray-0: #f8f9fa;
+  --color-gray-5: #f3f4f6;
+  --color-gray-10: #e5e7eb;
+  --color-gray-20: #d1d5db;
+  --color-gray-30: #9ca3af;
+  --color-gray-40: #6b7280;
+  --color-gray-50: #4b5563;
+  --color-gray-60: #374151;
+  --color-gray-70: #27272a;
+  --color-gray-80: #18181b;
+  --color-gray-90: #101014;
+  --color-gray-95: #09090b;
+  --color-gray-100: #000000;
+
   --color-danger-0: #fff1f0;
   --color-danger-5: #ffe0de;
   --color-danger-10: #ffcfcb;
@@ -58,18 +99,4 @@
   --color-info-90: #172554;
   --color-info-95: #0f172a;
   --color-info-100: #000000;
-
-  --color-gray-0: #f8f9fa;
-  --color-gray-5: #f3f4f6;
-  --color-gray-10: #e5e7eb;
-  --color-gray-20: #d1d5db;
-  --color-gray-30: #9ca3af;
-  --color-gray-40: #6b7280;
-  --color-gray-50: #4b5563;
-  --color-gray-60: #374151;
-  --color-gray-70: #27272a;
-  --color-gray-80: #18181b;
-  --color-gray-90: #101014;
-  --color-gray-95: #09090b;
-  --color-gray-100: #000000;
 }
