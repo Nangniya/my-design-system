@@ -1,74 +1,41 @@
 import { useState, useRef } from 'react';
-import downChevron from '../../assets/down-chevron.svg';
 import useClickOutside from '../../utils/useClickOutside';
+import { SelectProvider } from './selectContext';
+import { withOutlet } from '../../hoc/withOutlet';
+import { makePlugOf } from '../../hoc/makePlugOf';
+import SelectOption from './SelectOption';
+import SelectTrigger from './SelectTrigger';
+import SelectContent from './SelectContent';
+import type { IOption } from './selectContext';
 
-interface IOption {
-  value: string;
-  label: string;
-}
+const outletNames = ['trigger', 'content'] as const;
 
-const options = [
-  { value: '1', label: '선택 1' },
-  { value: '2', label: '선택 2' },
-  { value: '3', label: '선택 3' },
-];
+// 플러그인 컴포넌트들 생성
+const TriggerPlugin = makePlugOf('trigger', SelectTrigger);
+const ContentPlugin = makePlugOf('content', SelectContent);
 
-const Select = () => {
+// Select 컴포넌트를 withOutlet으로 감싸기
+const SelectComponent = withOutlet(outletNames, ({ outlets, ...props }) => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<IOption | null>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   useClickOutside(wrapperRef, () => setOpen(false));
-  const handleOpen = () => setOpen(prev => !prev);
-  const handleSelect = (option: IOption) => {
-    setSelected(option);
-    setOpen(false);
-  };
+
   return (
-    <section className="flex flex-col gap-2 w-full">
-      <label htmlFor="select" className="font-bold">
-        레이블
-      </label>
-      <div ref={wrapperRef} id="select" className="relative w-full">
-        <button
-          id="select"
-          type="button"
-          className={`
-            text-left border rounded-md px-4 py-2 bg-white w-full
-            border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-50
-            flex items-center justify-between
-            ${open && 'ring-2 ring-primary-50 border-primary-50'}
-          `}
-          onClick={handleOpen}
-        >
-          {selected ? (
-            <span className="text-gray-100">{selected.label}</span>
-          ) : (
-            <span className="text-gray-500">선택해 주세요.</span>
-          )}
-          <img
-            src={downChevron}
-            alt="down-chevron"
-            className={`w-5 h-5 transition-transform duration-300 ${open && 'rotate-180'}`}
-          />
-        </button>
-        {open && (
-          <ul className="absolute top-full left-0 w-full bg-white border border-gray-300 rounded-md mt-1 p-0.5">
-            {options.map(option => (
-              <li
-                key={option.value}
-                className={`px-4 py-2 hover:bg-secondary-5 hover:text-primary-70 rounded-md cursor-pointer ${
-                  selected?.value === option.value && 'bg-secondary-10 text-primary-70 font-bold'
-                }`}
-                onClick={() => handleSelect(option)}
-              >
-                {option.label}
-              </li>
-            ))}
-          </ul>
-        )}
+    <SelectProvider value={{ open, setOpen, selected, setSelected }}>
+      <div ref={wrapperRef} className="relative w-full" {...props}>
+        {outlets.trigger}
+        {outlets.content}
       </div>
-    </section>
+    </SelectProvider>
   );
-};
+});
+
+// Compound Component 패턴으로 export
+const Select = Object.assign(SelectComponent, {
+  Trigger: TriggerPlugin,
+  Content: ContentPlugin,
+  Option: SelectOption,
+});
 
 export default Select;

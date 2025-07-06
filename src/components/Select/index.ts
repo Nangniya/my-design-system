@@ -1,1 +1,1 @@
-export { default as Select } from './Select';
+const outletNames = ['trigger', 'content', 'option'] as const;
