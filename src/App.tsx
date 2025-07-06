@@ -1,16 +1,16 @@
 import Select from './components/Select/Select';
+import type { IOption } from './components/Select/selectContext';
 
 const App = () => {
+  const options: IOption[] = [
+    { value: '1', label: '선택 1' },
+    { value: '2', label: '선택 2' },
+    { value: '3', label: '선택 3' },
+  ];
+
   return (
     <main className="p-8">
-      <Select>
-        <Select.Trigger placeholder="선택해 주세요." />
-        <Select.Content>
-          <Select.Option value="1">선택 1</Select.Option>
-          <Select.Option value="2">선택 2</Select.Option>
-          <Select.Option value="3">선택 3</Select.Option>
-        </Select.Content>
-      </Select>
+      <Select options={options} placeholder="선택해 주세요." label="레이블" />
     </main>
   );
 };

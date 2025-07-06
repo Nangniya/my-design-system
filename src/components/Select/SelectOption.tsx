@@ -7,10 +7,11 @@ interface SelectOptionProps {
   className?: string;
   value: string;
   label?: string;
+  onClick?: () => void;
 }
 
 const SelectOption = forwardRef<HTMLLIElement, SelectOptionProps>(
-  ({ children, className = '', value, label }, ref) => {
+  ({ children, className = '', value, label, onClick }, ref) => {
     const { selected, setSelected, setOpen } = useSelectContext();
 
     const option: IOption = {
@@ -21,6 +22,7 @@ const SelectOption = forwardRef<HTMLLIElement, SelectOptionProps>(
     const handleSelect = () => {
       setSelected(option);
       setOpen(false);
+      onClick?.();
     };
 
     const isSelected = selected?.value === value;
