@@ -1,4 +1,4 @@
-import Select from './components/Select/Select';
+import Select from './components/Select';
 import type { IOption } from './components/Select/selectContext';
 
 const App = () => {
@@ -10,7 +10,7 @@ const App = () => {
 
   return (
     <main className="p-8">
-      <Select options={options} placeholder="선택해 주세요." label="레이블" />
+      <Select options={options} placeholder="선택해 주세요." label="레이블 이름" />
     </main>
   );
 };
