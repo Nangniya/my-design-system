@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Select from './Select';
+import Select from './index';
 import type { IOption } from './selectContext';
 
 const meta = {
@@ -15,7 +15,6 @@ const meta = {
           '- **옵션 선택**: 사용자가 드롭다운에서 옵션을 선택할 수 있습니다.\n' +
           '- **레이블 지원**: 선택 컴포넌트 위에 레이블을 표시할 수 있습니다.\n' +
           '- **플레이스홀더**: 선택되지 않았을 때 안내 텍스트를 표시합니다.\n' +
-          '- **콜백 지원**: 옵션이 선택되었을 때 콜백 함수를 호출합니다.\n' +
           '- **외부 클릭 감지**: 드롭다운 외부를 클릭하면 자동으로 닫힙니다.\n\n' +
           '## 사용법\n' +
           '```tsx\n' +
@@ -27,7 +26,6 @@ const meta = {
           '  options={options}\n' +
           '  placeholder="옵션을 선택해주세요"\n' +
           '  label="선택 항목"\n' +
-          '  onSelect={(option) => console.log(option)}\n' +
           '/>\n' +
           '```',
       },
@@ -48,11 +46,6 @@ const meta = {
       control: 'text',
       description:
         'Select 컴포넌트 위에 표시될 레이블. 제공하지 않으면 레이블이 표시되지 않습니다.',
-    },
-    onSelect: {
-      action: 'selected',
-      description:
-        '옵션이 선택되었을 때 호출되는 콜백 함수. 선택된 옵션 객체를 매개변수로 받습니다.',
     },
   },
 } satisfies Meta<typeof Select>;
@@ -96,19 +89,27 @@ export const WithLabel: Story = {
 };
 
 /**
- * 콜백 함수가 있는 Select 컴포넌트
+ * 커스텀 플레이스홀더를 가진 Select 컴포넌트
  *
- * 옵션이 선택되었을 때 콜백 함수가 호출되는 예제입니다.
- * 콜백에서는 선택된 옵션 정보를 받아서 처리할 수 있습니다.
+ * 커스텀 플레이스홀더 텍스트를 사용하는 예제입니다.
  */
-export const WithCallback: Story = {
+export const CustomPlaceholder: Story = {
   args: {
     options: defaultOptions,
-    placeholder: '콜백 테스트',
-    label: '콜백 예제',
-    onSelect: (option: IOption) => {
-      console.log('선택된 옵션:', option);
-      alert(`선택된 옵션: ${option.label}`);
-    },
+    placeholder: '원하는 옵션을 선택하세요',
+    label: '커스텀 플레이스홀더',
+  },
+};
+
+/**
+ * 레이블이 없는 Select 컴포넌트
+ *
+ * 레이블 없이 사용하는 Select 컴포넌트 예제입니다.
+ * 간단한 UI에서 사용할 때 유용합니다.
+ */
+export const WithoutLabel: Story = {
+  args: {
+    options: defaultOptions,
+    placeholder: '옵션을 선택해주세요',
   },
 };
