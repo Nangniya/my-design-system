@@ -1,7 +1,7 @@
 import createContext from '../../primitives/createContext';
 
 interface IOption {
-  value: string;
+  value: any;
   label: string;
 }
 
