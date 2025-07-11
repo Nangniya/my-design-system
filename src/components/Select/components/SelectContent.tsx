@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import { useSelectContext } from './selectContext';
+import { useSelectContext } from '../selectContext';
 
 interface SelectContentProps {
   children?: React.ReactNode;

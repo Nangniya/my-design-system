@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
-import downChevron from '../../assets/down-chevron.svg';
-import { useSelectContext } from './selectContext';
+import downChevron from '../../../assets/down-chevron.svg';
+import { useSelectContext } from '../selectContext';
 
 interface SelectTriggerProps {
   children?: React.ReactNode;

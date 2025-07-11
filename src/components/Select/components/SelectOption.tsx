@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
-import { useSelectContext } from './selectContext';
-import type { IOption } from './selectContext';
+import { useSelectContext } from '../selectContext';
+import type { IOption } from '../selectContext';
 
 interface SelectOptionProps {
   children?: React.ReactNode;
