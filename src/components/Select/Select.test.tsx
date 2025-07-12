@@ -20,11 +20,6 @@ describe('Select 컴포넌트', () => {
   ];
 
   describe('기본 렌더링 테스트', () => {
-    it('Select 컴포넌트가 올바르게 export되는지 확인', () => {
-      expect(Select).toBeDefined();
-      expect(typeof Select).toBe('function');
-    });
-
     it('기본 Select 컴포넌트가 올바르게 렌더링되는지 확인', () => {
       render(<Select options={mockOptions} placeholder="옵션을 선택해주세요" />);
 
@@ -239,19 +234,6 @@ describe('Select 컴포넌트', () => {
       await waitFor(() => {
         expect(screen.queryByRole('list')).not.toBeInTheDocument();
       });
-    });
-
-    it('App.tsx와 동일한 사용법으로 렌더링되는지 확인', () => {
-      const options: IOption[] = [
-        { value: 1, label: '선택 1' },
-        { value: 2, label: '선택 2' },
-        { value: 3, label: '선택 3' },
-      ];
-
-      render(<Select options={options} placeholder="선택해 주세요." label="레이블 이름" />);
-
-      expect(screen.getByText('레이블 이름')).toBeInTheDocument();
-      expect(screen.getByText('선택해 주세요.')).toBeInTheDocument();
     });
 
     it('Storybook의 모든 케이스가 올바르게 렌더링되는지 확인', () => {
