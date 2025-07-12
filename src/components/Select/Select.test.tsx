@@ -225,18 +225,20 @@ describe('Select 컴포넌트', () => {
   });
 
   describe('경계 케이스 테스트', () => {
-    it('빈 옵션 배열로 렌더링되는지 확인', () => {
+    it('빈 옵션 배열로 렌더링되는지 확인', async () => {
+      const user = userEvent.setup();
       render(<Select options={[]} placeholder="옵션이 없습니다" />);
 
       expect(screen.getByText('옵션이 없습니다')).toBeInTheDocument();
 
-      // 드롭다운을 열어도 옵션이 없는지 확인
+      // 드롭다운을 열려고 시도
       const trigger = screen.getByRole('button');
-      fireEvent.click(trigger);
+      await user.click(trigger);
 
-      // 옵션 목록이 비어있는지 확인
-      const optionList = screen.queryByRole('listbox');
-      expect(optionList).toBeInTheDocument();
+      // 옵션이 없으므로 드롭다운이 열리지 않아야 함
+      await waitFor(() => {
+        expect(screen.queryByRole('list')).not.toBeInTheDocument();
+      });
     });
 
     it('App.tsx와 동일한 사용법으로 렌더링되는지 확인', () => {

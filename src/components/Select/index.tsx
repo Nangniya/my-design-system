@@ -43,11 +43,13 @@ const Select = ({ options, placeholder = '선택해 주세요.', label }: Select
   return (
     <SelectCompound>
       <SelectCompound.Trigger placeholder={placeholder} label={label} />
-      <SelectCompound.Content>
-        {options.map(option => (
-          <SelectCompound.Option key={option.value} value={option.value} label={option.label} />
-        ))}
-      </SelectCompound.Content>
+      {options.length > 0 && (
+        <SelectCompound.Content>
+          {options.map(option => (
+            <SelectCompound.Option key={option.value} value={option.value} label={option.label} />
+          ))}
+        </SelectCompound.Content>
+      )}
     </SelectCompound>
   );
 };
