@@ -25,7 +25,7 @@ export const withOutlet = <T extends readonly string[]>(
   Comp: (props: OutletCompProps<T>) => React.ReactElement | null
 ) => {
   const OutletComp = forwardRef(
-    (props: ComponentPropsWithoutRef<'div'>, forwardedRef: ForwardedRef<HTMLElement>) => {
+    (props: ComponentPropsWithoutRef<'div'>, forwardedRef: ForwardedRef<HTMLDivElement>) => {
       const childrenArray: ReactNode[] = Children.toArray(props.children);
 
       const outlets = [...outletArray, 'default'].reduce((prev, currentKey) => {
