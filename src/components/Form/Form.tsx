@@ -8,7 +8,6 @@ interface FormProps {
   initialValues?: Record<string, any>;
   onSubmit: (values: Record<string, any>) => void;
   children?: React.ReactNode;
-  className?: string;
   style?: React.CSSProperties;
 }
 

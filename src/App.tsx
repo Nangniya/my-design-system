@@ -1,46 +1,36 @@
-import Select from './components/Select';
-import type { IOption } from './components/Select/selectContext';
-import Form from './components/Form';
+import { useRef, useState } from 'react';
 import TextField from './components/TextField';
-import Button from './components/Button';
 
 const App = () => {
-  const options: IOption[] = [
-    { value: '1', label: '선택 1' },
-    { value: '2', label: '선택 2' },
-    { value: '3', label: '선택 3' },
-  ];
-
-  const handleFormSubmit = (values: Record<string, any>) => {
-    alert(JSON.stringify(values));
-  };
+  const [controlledValue, setControlledValue] = useState('');
+  const unControlledRef = useRef<HTMLInputElement>(null);
 
   return (
     <main className="p-8">
       <div className="space-y-8">
         <section>
-          <h2 className="text-xl font-semibold mb-4">Select</h2>
-          <Select options={options} placeholder="선택해 주세요." label="레이블 이름" />
+          <h2 className="text-xl font-semibold mb-4">TextField Controlled (제어 컴포넌트)</h2>
+          <div className="space-y-2">
+            <TextField
+              label="제어 TextField"
+              value={controlledValue}
+              onChange={setControlledValue}
+              placeholder="제어 value 입력"
+            />
+            <div className="text-xs text-gray-50">현재 값: {controlledValue}</div>
+          </div>
         </section>
         <section>
-          <h2 className="text-xl font-semibold mb-4">Form</h2>
-          <Form
-            initialValues={{ email: '', question: '' }}
-            onSubmit={handleFormSubmit}
-            className="max-w-md space-y-4"
-          >
-            <Form.Control name="email">
-              <TextField type="email" label="이메일" required placeholder="이메일을 입력하세요" />
-            </Form.Control>
-            <Form.Control name="question">
-              <TextField as="textarea" label="질문" required placeholder="질문을 입력하세요" />
-            </Form.Control>
-            <Form.Submit>
-              <Button type="submit">제출하기</Button>
-            </Form.Submit>
-          </Form>
+          <h2 className="text-xl font-semibold mb-4">TextField Uncontrolled (비제어 컴포넌트)</h2>
+          <TextField
+            label="비제어 TextField"
+            defaultValue="초기값"
+            placeholder="비제어 value 입력"
+            ref={unControlledRef}
+          />
         </section>
       </div>
+      <button onClick={() => console.log(unControlledRef.current?.value)}>ref 값 읽기</button>
     </main>
   );
 };
