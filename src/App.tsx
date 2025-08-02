@@ -1,16 +1,15 @@
 import { useRef, useState } from 'react';
 import TextField from './components/TextField';
-import TextArea from './components/TextArea/TextArea';
+
 import RadioGroup from './components/Radio';
+import Select from './components/Select';
 
 const App = () => {
-  const [controlledValue, setControlledValue] = useState({
-    name: '',
-    age: 0,
-  });
+  const [controlledValue, setControlledValue] = useState('');
   const textFieldRef = useRef<HTMLInputElement>(null);
   const [controlledRadio, setControlledRadio] = useState('1');
   const radioGroupRef = useRef<HTMLFieldSetElement>(null);
+  const [selectedFruit, setSelectedFruit] = useState<string>();
 
   return (
     <main className="p-8">
@@ -20,11 +19,11 @@ const App = () => {
             <TextField
               label="제어 TextField"
               helperText="도움말"
-              value={controlledValue.name}
-              onChange={value => setControlledValue(prev => ({ ...prev, name: value }))}
+              value={controlledValue}
+              onChange={setControlledValue}
               placeholder="제어 value 입력"
             />
-            <div className="text-xs text-gray-50">현재 값: {controlledValue.name}</div>
+            <div className="text-xs text-gray-50">현재 값: {controlledValue}</div>
           </div>
         </section>
         <section>
@@ -41,14 +40,11 @@ const App = () => {
             ref 값 읽기
           </button>
         </section>
-        <section>
-          <TextArea label="레이블" helperText="도움말" placeholder="내용을 입력하세요" />
-        </section>
         <section className="space-y-2">
           <RadioGroup
             label="제어 Radio Group"
             value={controlledRadio}
-            onValueChange={(value?: string) => value && setControlledRadio(value)}
+            onValueChange={setControlledRadio}
           >
             <RadioGroup.Item value="1">선택 1</RadioGroup.Item>
             <RadioGroup.Item value="2">선택 2</RadioGroup.Item>
@@ -78,6 +74,29 @@ const App = () => {
           >
             ref 값 읽기
           </button>
+        </section>
+        <section className="space-y-2">
+          <h2 className="text-lg font-semibold">Select(제어)</h2>
+          <Select value={selectedFruit} onValueChange={setSelectedFruit}>
+            <Select.Trigger placeholder="과일을 선택하세요" />
+            <Select.Content>
+              <Select.Option value="apple">사과</Select.Option>
+              <Select.Option value="banana">바나나</Select.Option>
+              <Select.Option value="blueberry">블루베리</Select.Option>
+            </Select.Content>
+          </Select>
+          <div className="text-xs text-gray-50">현재 선택된 과일: {selectedFruit}</div>
+        </section>
+        <section>
+          <h2 className="text-lg font-semibold">Select(비제어)</h2>
+          <Select defaultValue="apple">
+            <Select.Trigger placeholder="과일을 선택하세요" />
+            <Select.Content>
+              <Select.Option value="apple">사과</Select.Option>
+              <Select.Option value="banana">바나나</Select.Option>
+              <Select.Option value="blueberry">블루베리</Select.Option>
+            </Select.Content>
+          </Select>
         </section>
       </div>
     </main>

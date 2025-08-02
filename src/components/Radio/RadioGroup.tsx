@@ -8,7 +8,7 @@ type RadioGroupProps = {
   children: React.ReactNode;
   value?: string;
   defaultValue?: string;
-  onValueChange?: (value?: string) => void;
+  onValueChange?: (value: string) => void;
   disabled?: boolean;
 } & Omit<React.ComponentPropsWithRef<'fieldset'>, 'onChange'>;
 
@@ -16,8 +16,8 @@ const RadioGroupRoot = forwardRef<HTMLFieldSetElement, RadioGroupProps>(
   ({ label, children, value: propValue, defaultValue, onValueChange, disabled, ...props }, ref) => {
     const [selectedValue, setSelectedValue] = useControllableState({
       prop: propValue,
-      defaultProp: defaultValue,
-      onChange: onValueChange,
+      defaultProp: defaultValue ?? null,
+      onChange: onValueChange as (value: string | null) => void,
     });
 
     const name = useId();

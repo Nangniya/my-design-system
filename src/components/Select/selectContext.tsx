@@ -7,13 +7,10 @@ interface IOption {
 
 interface SelectContextType {
   open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpen: (open: boolean) => void;
   selected: IOption | null;
-  setSelected: React.Dispatch<React.SetStateAction<IOption | null>>;
+  setSelected: (option: IOption) => void;
 }
 
-const [Provider, useContext] = createContext<SelectContextType>('select');
-
-export const SelectProvider = Provider;
-export const useSelectContext = useContext;
+export const [SelectProvider, useSelectContext] = createContext<SelectContextType>('select');
 export type { IOption, SelectContextType };

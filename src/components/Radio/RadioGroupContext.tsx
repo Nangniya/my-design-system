@@ -2,7 +2,7 @@ import createContext from '../../primitives/createContext';
 
 export type RadioGroupContextValue = {
   name: string;
-  selectedValue?: string;
+  selectedValue?: string | null;
   onValueChange: (value: string) => void;
   disabled?: boolean;
 };

@@ -13,7 +13,7 @@ const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
   ({ children, className = '', placeholder, label }, ref) => {
     const { open, setOpen, selected } = useSelectContext();
 
-    const handleOpen = () => setOpen(prev => !prev);
+    const handleOpen = () => setOpen(!open);
 
     return (
       <>
@@ -37,7 +37,7 @@ const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
           {children ? (
             children
           ) : selected ? (
-            <span className="text-gray-100">{selected.label}</span>
+            <span className="text-gray-900">{selected.label}</span>
           ) : (
             <span className="text-gray-500">{placeholder}</span>
           )}
